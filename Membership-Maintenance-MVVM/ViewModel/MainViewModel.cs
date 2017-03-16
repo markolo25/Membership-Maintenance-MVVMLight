@@ -162,27 +162,35 @@ namespace Membership_Maintenance_MVVM.ViewModel
             mod.Close();
             if (obj == null)
             {
-                Messenger.Default.Unregister<Member>(this, finishMod);
+                this.RaisePropertyChanged(() => MemberList);
+                Messenger.Default.Unregister(this);
+
             }
             else if (obj.FirstName == null && obj.LastName == null && obj.Email == null)
             {
                 Remove_Employee();
-                Messenger.Default.Unregister<Member>(this, finishMod);
+                Messenger.Default.Unregister(this);
+
             }
 
             else if (isValid(obj))
             {
-                MessageBox.Show("I fucking modified you pleb");
-                SelectedMember = obj;
-                this.RaisePropertyChanged(() => MemberList);
-                Messenger.Default.Unregister<Member>(this, finishMod);
-                return;
+                if (MemberList.Count > 0)
+                {
+                    members[members.IndexOf(selectedMember)] = obj;
+                }
+                Messenger.Default.Unregister(this);
+
             }
             else
             {
                 MessageBox.Show("Invalid Member not doing anything");
-                Messenger.Default.Unregister<Member>(this, finishMod);
+                Messenger.Default.Unregister(this);
+
             }
+            selectedMember = null;
+            this.RaisePropertyChanged(() => MemberList);
+            this.RaisePropertyChanged(() => SelectedMember);
         }
 
 

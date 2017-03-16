@@ -38,25 +38,23 @@ namespace Membership_Maintenance_MVVM.ViewModel
             this.RaisePropertyChanged(() => FirstName);
             this.RaisePropertyChanged(() => LastName);
             this.RaisePropertyChanged(() => Email);
+            Messenger.Default.Unregister(this);
         }
 
         private void save()
         {
             Member message = new Member(this.FirstName, this.LastName, this.Email);
-            Messenger.Default.Unregister<Member>(this,recieve);
             Messenger.Default.Send(message);
         }
 
         private void cancel()
         {
             Member ret = null;
-            Messenger.Default.Unregister<Member>(this, recieve);
             Messenger.Default.Send(ret);
         }
 
         private void delete()
         {
-            Messenger.Default.Unregister<Member>(this, recieve);
             Messenger.Default.Send(new Member(null, null, null));
         }
 
