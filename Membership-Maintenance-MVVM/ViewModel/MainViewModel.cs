@@ -27,6 +27,7 @@ namespace Membership_Maintenance_MVVM.ViewModel
         private ObservableCollection<Member> members;
         private Member selectedMember;
         Add_Membership add;
+        Update_Membership mod;
         public ICommand AddButton { get; private set; }
         public ICommand RemoveButton { get; private set; }
         public ICommand CloseButton { get; private set; }
@@ -41,11 +42,13 @@ namespace Membership_Maintenance_MVVM.ViewModel
             AddButton = new RelayCommand(Add_Employee);
             RemoveButton = new RelayCommand(Remove_Employee);
             CloseButton = new RelayCommand(Exit);
-            SelectMember = new RelayCommand(Update);
             members = new ObservableCollection<Member>();
 
         }
 
+        /// <summary>
+        /// Properties for Memberlist used by the Binding on the xaml
+        /// </summary>
         public ObservableCollection<Member> MemberList
         {
             get
@@ -54,6 +57,9 @@ namespace Membership_Maintenance_MVVM.ViewModel
             }
         }
 
+        /// <summary>
+        /// The Member Object currently selected
+        /// </summary>
         public Member SelectedMember
         {
             get
@@ -63,45 +69,70 @@ namespace Membership_Maintenance_MVVM.ViewModel
             set
             {
                 selectedMember = value;
+                Modify_Handler();
                 this.RaisePropertyChanged(() => MemberList);
             }
         }
 
+        /// <summary>
+        /// Event handler/function for the Add Button
+        /// </summary>
         private void Add_Employee()
         {
             add = new Add_Membership();
             add.Show();
-            Messenger.Default.Register<Member>(this, OnReceiveMessageAction);
+            Messenger.Default.Register<Member>(this, finishAdd);
         }
 
+
+
+        /// <summary>
+        /// Was going to insert validator stuff in here but
+        /// too lazy to modify it for this use case
+        /// not required anyways
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns>boolean stating if the member is valid or not</returns>
         private bool isValid(Member obj)
         {
             return true;
         }
-        private void OnReceiveMessageAction(Member obj)
+
+
+
+
+        /// <summary>
+        /// Handler for Messenger Recieved for the Add_Employee
+        /// Function
+        /// </summary>
+        /// <param name="obj"></param>
+        private void finishAdd(Member obj)
         {
             add.Close();
             if (obj == null)
             {
-                Messenger.Default.Unregister<Member>(this, OnReceiveMessageAction);
+                Messenger.Default.Unregister<Member>(this, finishAdd);
                 return;
             }
             if (!members.Contains(obj) && isValid(obj))
             {
                 members.Add(obj);
                 this.RaisePropertyChanged(() => MemberList);
-                Messenger.Default.Unregister<Member>(this, OnReceiveMessageAction);
+                Messenger.Default.Unregister<Member>(this, finishAdd);
                 return;
                 
             }
             else
             {
                 MessageBox.Show("This Member is already in the list");
-                Messenger.Default.Unregister<Member>(this, OnReceiveMessageAction);
+                Messenger.Default.Unregister<Member>(this, finishAdd);
                 return;
             }
         }
 
+        /// <summary>
+        /// Remove the currently selected employee.
+        /// </summary>
         private void Remove_Employee()
         {
             if (MemberList.Count > 0)
@@ -110,16 +141,64 @@ namespace Membership_Maintenance_MVVM.ViewModel
             }
         }
 
+        /// <summary>
+        /// Handler for the on click
+        /// </summary>
+        private void Modify_Handler()
+        {
+            mod = new Update_Membership();
+            mod.Show();
+            Messenger.Default.Send(selectedMember);
+            Messenger.Default.Register<Member>(this, finishMod);
+        }
+
+        /// <summary>
+        /// Handler for Message Recieved from the 
+        /// UpdateViewModel
+        /// </summary>
+        /// <param name="obj"></param>
+        private void finishMod(Member obj)
+        {
+            mod.Close();
+            if (obj == null)
+            {
+                Messenger.Default.Unregister<Member>(this, finishMod);
+            }
+            else if (obj.FirstName == null && obj.LastName == null && obj.Email == null)
+            {
+                Remove_Employee();
+                Messenger.Default.Unregister<Member>(this, finishMod);
+            }
+
+            else if (isValid(obj))
+            {
+                MessageBox.Show("I fucking modified you pleb");
+                SelectedMember = obj;
+                this.RaisePropertyChanged(() => MemberList);
+                Messenger.Default.Unregister<Member>(this, finishMod);
+                return;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Member not doing anything");
+                Messenger.Default.Unregister<Member>(this, finishMod);
+            }
+        }
+
+
+        /// <summary>
+        /// Exits the Program
+        /// </summary>
         private void Exit()
         {
             Application.Current.Shutdown();
         }
 
-        public void Update()
-        {
 
-        }
 
-  
+
+
+
+
     }
 }

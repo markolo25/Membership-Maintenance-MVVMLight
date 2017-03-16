@@ -1,0 +1,21 @@
+﻿<Window x:Class="Membership_Maintenance_MVVM.View.Update_Membership"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Membership_Maintenance_MVVM.View"
+        mc:Ignorable="d"
+        Title="Update_Membership" Height="206.763" Width="300"
+        DataContext ="{Binding UpdateViewModel, Source={StaticResource Locator}}">
+    <Grid>
+        <Label x:Name="fNameLabel" Content="First Name" HorizontalAlignment="Left" Margin="28,11,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lNameLabel" Content="Last Name" Margin="28,49,198,0" VerticalAlignment="Top" RenderTransformOrigin="0.499,-0.318"/>
+        <Label x:Name="EmailLabel" Content="E-Mail" HorizontalAlignment="Left" Margin="28,89,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="FirstName" HorizontalAlignment="Left" Height="22" Margin="124,15,0,0" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="LastName" HorizontalAlignment="Left" Height="22" Margin="124,53,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="140"/>
+        <TextBox x:Name="Email" HorizontalAlignment="Left" Height="22" Margin="124,93,0,0" TextWrapping="Wrap" Text="{Binding Email}" VerticalAlignment="Top" Width="140"/>
+        <Button x:Name="Save" Content="Save" Command ="{Binding saveButton}"  HorizontalAlignment="Left" Margin="28,127,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Delete" Content="Delete" Command="{Binding deleteButton}" HorizontalAlignment="Left" Margin="108,127,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Cancel" Content="Cancel" Command="{Binding cancelButton}"  HorizontalAlignment="Left" Margin="189,127,0,0" VerticalAlignment="Top" Width="75"/>
+    </Grid>
+</Window>

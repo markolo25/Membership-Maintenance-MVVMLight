@@ -14,8 +14,7 @@
         </Grid.ColumnDefinitions>
         <ListBox x:Name="listBox" ItemsSource="{Binding MemberList}" SelectedItem="{Binding SelectedMember, Mode=TwoWay}" DisplayMemberPath="GetDisplayText" HorizontalAlignment="Left" Height="282" Margin="18,18,0,0" VerticalAlignment="Top" Width="319" Grid.ColumnSpan="2"/>
         <Button x:Name="add_button" Content="Add" Command="{Binding AddButton}" HorizontalAlignment="Left" Margin="105.039,32,0,0" VerticalAlignment="Top" Width="138" Height="44" Grid.Column="1"/>
-        <Button x:Name="remove_button" Content="Remove"  Command="{Binding RemoveButton}" HorizontalAlignment="Left" Margin="105.039,82,0,0" VerticalAlignment="Top" Width="138" Height="44" Grid.Column="1"/>
-        <Button x:Name="close_button" Content="Close"  Command="{Binding AddButton}" HorizontalAlignment="Left" Margin="105.039,131,0,0" VerticalAlignment="Top" Width="138" Height="44" Grid.Column="1"/>
+        <Button x:Name="close_button" Content="Close"  Command="{Binding CloseButton}" HorizontalAlignment="Left" Margin="105,83,0,0" VerticalAlignment="Top" Width="138" Height="44" Grid.Column="1"/>
 
     </Grid>
 </Window>

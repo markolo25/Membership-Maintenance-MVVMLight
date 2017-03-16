@@ -29,3 +29,5 @@ C:\Users\Mark Mendoza\Documents\Visual Studio 2015\Projects\Membership-Maintenan
 C:\Users\Mark Mendoza\Documents\Visual Studio 2015\Projects\Membership-Maintenance-MVVM\Membership-Maintenance-MVVM\obj\Debug\View\Add_Membership.g.cs
 C:\Users\Mark Mendoza\Documents\Visual Studio 2015\Projects\Membership-Maintenance-MVVM\Membership-Maintenance-MVVM\obj\Debug\View\MainWindow.baml
 C:\Users\Mark Mendoza\Documents\Visual Studio 2015\Projects\Membership-Maintenance-MVVM\Membership-Maintenance-MVVM\obj\Debug\View\Add_Membership.baml
+C:\Users\Mark Mendoza\Documents\Visual Studio 2015\Projects\Membership-Maintenance-MVVM\Membership-Maintenance-MVVM\obj\Debug\View\Update_Membership.g.cs
+C:\Users\Mark Mendoza\Documents\Visual Studio 2015\Projects\Membership-Maintenance-MVVM\Membership-Maintenance-MVVM\obj\Debug\View\Update_Membership.baml

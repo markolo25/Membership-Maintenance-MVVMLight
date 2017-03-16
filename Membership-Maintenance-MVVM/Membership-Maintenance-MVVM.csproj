@@ -78,9 +78,13 @@
     <Compile Include="Model\Member.cs" />
     <Compile Include="ViewModel\AddViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\UpdateViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\Add_Membership.xaml.cs">
       <DependentUpon>Add_Membership.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Update_Membership.xaml.cs">
+      <DependentUpon>Update_Membership.xaml</DependentUpon>
     </Compile>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +99,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Add_Membership.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Update_Membership.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

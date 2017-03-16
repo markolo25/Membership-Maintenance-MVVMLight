@@ -35,10 +35,12 @@ namespace Membership_Maintenance_MVVM.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddViewModel>();
+            SimpleIoc.Default.Register<UpdateViewModel>();
+
 
         }
 
- 
+
         public MainViewModel MainViewModel
         {
             get
@@ -46,6 +48,16 @@ namespace Membership_Maintenance_MVVM.ViewModel
                 return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
+
+        public UpdateViewModel UpdateViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<UpdateViewModel>();
+            }
+        }
+
+
 
         public AddViewModel AddViewModel
         {
